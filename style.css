@@ -521,11 +521,15 @@ summary:focus-visible {
   align-items: center;
   justify-content: center;
   min-height: 40px;
+  max-width: 160px;
   padding: 8px 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
   font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hero,
@@ -2536,9 +2540,17 @@ button[disabled] {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .menu-toggle {
     display: none;
+  }
+
+  .navbar {
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    flex: 0 0 auto;
   }
 
   .nav-menu {
@@ -2547,6 +2559,7 @@ button[disabled] {
     max-height: none;
     display: flex;
     flex: 1;
+    min-width: 0;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
@@ -2563,10 +2576,16 @@ button[disabled] {
     align-items: center;
   }
 
+  .nav-links {
+    flex: 0 1 auto;
+    gap: clamp(4px, 0.7vw, 8px);
+  }
+
   .nav-actions {
+    flex: 0 0 auto;
     gap: 12px;
-    margin-left: clamp(1.5rem, 4vw, 3rem);
-    padding-left: clamp(1.25rem, 3vw, 2rem);
+    margin-left: clamp(1rem, 2vw, 2rem);
+    padding-left: clamp(1rem, 2vw, 1.5rem);
     border-left: 1px solid rgba(18, 107, 115, 0.16);
   }
 
@@ -2574,16 +2593,18 @@ button[disabled] {
   .nav-actions a,
   .logout-btn {
     width: auto;
+    white-space: nowrap;
+    font-size: 0.95rem;
   }
 
   .nav-actions .login-link {
-    min-width: 86px;
+    min-width: 76px;
   }
 
   .nav-actions .nav-cta {
-    min-width: 134px;
-    padding-right: 18px;
-    padding-left: 18px;
+    min-width: 118px;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 }
 
@@ -3143,7 +3164,7 @@ textarea {
   padding-top: 2rem;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1279px) {
   .navbar,
   .hero,
   .page-hero,
@@ -3170,7 +3191,7 @@ textarea {
 
   .nav-menu {
     position: fixed;
-    top: 72px;
+    top: 64px;
     right: 0.75rem;
     left: 0.75rem;
     width: auto;
@@ -3185,6 +3206,8 @@ textarea {
   .nav-links,
   .nav-actions {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .nav-links a,
