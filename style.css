@@ -2316,8 +2316,13 @@ button[disabled] {
 .location-card iframe {
   width: 100%;
   min-height: 260px;
+  aspect-ratio: 16 / 9;
   border: 0;
   border-radius: var(--radius);
+}
+
+.location-card a.btn {
+  width: fit-content;
 }
 
 .hidden,
