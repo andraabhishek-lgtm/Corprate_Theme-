@@ -2540,7 +2540,7 @@ button[disabled] {
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1040px) {
   .menu-toggle {
     display: none;
   }
