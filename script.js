@@ -52,6 +52,7 @@ function setupNavigation() {
     menuToggle.addEventListener("click", () => {
       const isOpen = navMenu.classList.toggle("open");
       menuToggle.classList.toggle("open", isOpen);
+      document.body.classList.toggle("nav-open", isOpen);
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
     });
@@ -62,6 +63,16 @@ function setupNavigation() {
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMenu(menuToggle, navMenu);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!navMenu.classList.contains("open")) return;
+      if (navMenu.contains(event.target) || menuToggle.contains(event.target)) return;
+      closeMenu(menuToggle, navMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024) closeMenu(menuToggle, navMenu);
     });
   }
 
@@ -128,6 +139,7 @@ function closeMenu(menuToggle, navMenu) {
   if (!menuToggle || !navMenu) return;
   navMenu.classList.remove("open");
   menuToggle.classList.remove("open");
+  document.body.classList.remove("nav-open");
   menuToggle.setAttribute("aria-expanded", "false");
   menuToggle.setAttribute("aria-label", "Open menu");
 }
